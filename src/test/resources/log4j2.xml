@@ -1,0 +1,17 @@
+<Configuration status="DEBUG" name="TestCustomLevels">
+
+<Appenders>
+    <Console name="STDOUT">
+        <PatternLayout pattern="%m%n"/>
+    </Console>
+    <List name="List1"/>
+</Appenders>
+
+<Loggers>
+    <Root level="DEBUG">
+        <AppenderRef ref="STDOUT"/>
+        <AppenderRef ref="List1"/>
+    </Root>
+</Loggers>
+
+</Configuration>
