@@ -24,7 +24,6 @@ public class DemoApplicationTests {
 
 	@ClassRule
 	public static LoggerContextRule context = new LoggerContextRule("log4j2.xml");
-
 	private ListAppender listAppender;
 
 	@Before
@@ -40,8 +39,6 @@ public class DemoApplicationTests {
 
 		logger.info("TEST");
 		assertThat(events, hasSize(1));
-
 		assertEquals("TEST", events.get(0).getMessage().toString());
 	}
-
 }
