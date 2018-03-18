@@ -1,0 +1,49 @@
+<Configuration monitorInterval="60">
+    <Properties>
+        <Property name="path">logs</Property>
+    </Properties>
+    <Appenders>
+        <SMTP name="Mail" subject="Error Log" to="mail@mail.com" from="test@logging.apache.org"
+              smtpHost="localhost" smtpPort="25" bufferSize="1">
+        </SMTP>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </Console>
+        <File name="App-Appender" fileName="${path}/webapp.log" append="true">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+        <File name="SpringBoot-Appender" fileName="${path}/springboot.log" append="true">
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.springframework.web" level="info" additivity="false">
+            <AppenderRef ref="SpringBoot-Appender" />
+            <AppenderRef ref="Console-Appender" />
+            <AppenderRef ref="Mail"/>
+        </Logger>
+        <Logger name="com.example.demo" level="info"
+                additivity="false">
+            <AppenderRef ref="App-Appender" />
+            <AppenderRef ref="SpringBoot-Appender" />
+            <AppenderRef ref="Console-Appender" />
+            <AppenderRef ref="Mail"/>
+        </Logger>
+        <Root>
+            <AppenderRef ref="Console-Appender" />
+            <AppenderRef ref="Mail"/>
+        </Root>
+    </Loggers>
+</Configuration>

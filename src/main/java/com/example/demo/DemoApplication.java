@@ -8,5 +8,8 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
+
+		MyLoggerCustom logger = MyLoggerCustom.create(DemoApplication.class);
+		logger.info("TEST");
 	}
 }
